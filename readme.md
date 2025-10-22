@@ -1,22 +1,15 @@
-# 音乐驱动的图像扭曲视频生成器
+# 抽象视频视频生成器
+
+本项目完全由ai生成，包括该文档
 
 这是一个 Web 应用程序，允许用户上传一张图片和一个音频文件，服务器会自动分析音频的旋律特征，生成一个图像根据旋律进行“挤压与拉伸”(Squash & Stretch)的动态视频。
 
-## ✨ 项目特色
-
-- **简洁的Web界面**: 通过浏览器即可轻松上传文件并生成视频。
-- **高级音频分析**: 采用**谐波-打击乐分离(HPSS)**技术，能精确地从音乐中分离出主旋律，并根据旋律的音符变化来驱动动画，而非简单的节拍。
-- **生动的视觉效果**:
-    - 实现经典的**挤压与拉伸**动画，视觉效果充满弹性。
-    - **右下角锚点**缩放，符合常见Meme视频的风格。
-    - **连续平滑动画**，效果自然不生硬。
-- **高度可定制**: 核心处理脚本中的参数可以轻松调整，以改变动画的基础大小、最大幅度、平滑度等。
+。
 
 ## 🎬 项目演示
 
-（在这里可以放置一张展示最终效果的GIF动图）
 
-![项目演示GIF](https://user-images.githubusercontent.com/path/to/your_demo.gif)
+![alt text](966d1bba-0665-4b35-bad3-a7819692caf0.gif)
 
 *最终生成的视频效果示例*
 
@@ -69,14 +62,8 @@ music-video-generator/
 
 ## 🚀 安装与设置
 
-1.  **下载项目代码**
-    ```bash
-    git clone https://your-repository-url.git
-    cd music-video-generator
-    ```
-    或者直接下载ZIP压缩包并解压。
 
-2.  **创建并激活虚拟环境 (推荐)**
+1.  **创建并激活虚拟环境 (推荐)**
     这可以避免与你系统中的其他Python包产生冲突。
     
     - **Windows**:
@@ -90,7 +77,7 @@ music-video-generator/
       source venv/bin/activate
       ```
 
-3.  **创建 `requirements.txt` 文件**
+2.  **创建 `requirements.txt` 文件**
     在项目根目录下创建一个名为 `requirements.txt` 的文件，并将以下内容复制进去。注意，我们指定了 `moviepy` 的版本为 `1.0.3`。
     
     ```txt
@@ -102,13 +89,13 @@ music-video-generator/
     soundfile
     ```
 
-4.  **安装Python依赖**
+3.  **安装Python依赖**
     在已激活虚拟环境的终端中，运行以下命令：
     ```bash
     pip install -r requirements.txt
     ```
 
-5.  **创建必要文件夹**
+4.  **创建必要文件夹**
     在项目根目录下，手动创建两个空文件夹：
     - `uploads`
     - `outputs`
@@ -154,12 +141,3 @@ event_frames = librosa.util.peak_pick(onset_env, ..., delta=0.2, ...)
 - `smoothing_factor`: 调整动画的“弹性”感。
 - `delta`: 调整旋律检测的灵敏度。**减小**此值可捕捉更多细微音符，**增大**则只对主要音符有反应。
 
-## ❓ 常见问题排查
-
-1.  **程序卡在 "正在分析音频..."**
-    - **原因**: 99% 的可能是因为你没有安装 **FFmpeg**，或者没有将其正确添加到系统环境变量中。
-    - **解决**: 请返回 `环境要求` 部分，确保 FFmpeg 已正确安装并可以被系统找到。
-
-2.  **服务器在我上传文件后自动重启**
-    - **原因**: 这是Flask的Debug模式下的自动重载(Reloader)功能导致的。它检测到 `librosa` 在处理音频时生成了缓存文件(`.pyc`)，误以为代码被修改，于是重启了服务，中断了视频生成过程。
-    - **解决**: 打开 `app.py` 文件，找到最后一行 `app.run(debug=True)`，将其修改为 `app.run(debug=True, use_reloader=False)`，然后重启服务。
