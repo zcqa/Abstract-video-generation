@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>音乐驱动的图像扭曲视频生成器</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f4f4f9; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .container { background: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); text-align: center; width: 90%; max-width: 500px; }
+        h1 { color: #333; }
+        .upload-section { margin: 20px 0; }
+        label { display: block; margin-bottom: 8px; font-weight: bold; color: #555; }
+        input[type="file"] { width: 100%; padding: 10px; box-sizing: border-box; border: 1px solid #ddd; border-radius: 4px; }
+        button { background-color: #4CAF50; color: white; padding: 12px 20px; border: none; border-radius: 4px; cursor: pointer; font-size: 16px; width: 100%; margin-top: 20px; transition: background-color 0.3s; }
+        button:disabled { background-color: #aaa; cursor: not-allowed; }
+        button:hover:not(:disabled) { background-color: #45a049; }
+        #status { margin-top: 20px; font-style: italic; color: #888; }
+        #result a { display: inline-block; margin-top: 20px; padding: 12px 20px; background-color: #008CBA; color: white; text-decoration: none; border-radius: 4px; transition: background-color 0.3s; }
+        #result a:hover { background-color: #007bb5; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>音乐驱动的图像扭曲视频生成器</h1>
+    <form id="upload-form">
+        <div class="upload-section">
+            <label for="image-input">第一步：上传一张图片 (JPG, PNG)</label>
+            <input type="file" id="image-input" name="image" accept="image/jpeg, image/png" required>
+        </div>
+        <div class="upload-section">
+            <label for="audio-input">第二步：上传一个音频文件 (MP3, WAV)</label>
+            <input type="file" id="audio-input" name="audio" accept="audio/mpeg, audio/wav" required>
+        </div>
+        <button type="submit" id="submit-btn">开始处理</button>
+    </form>
+    <div id="status"></div>
+    <div id="result"></div>
+</div>
+
+<script src="/static/js/script.js"></script>
+
+</body>
+</html>
